@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Calculator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="jumbotron">
+    <h1>Calculator</h1>
+  </div>
+  <div class="calcContainer">
+    <table>
+      <tr>
+        <input class="head" type="text" value="Deep Siroya">
+        <input class="clear" type="button" value="C" onclick="CLEAR()">
+      </tr>
+
+
+      <tr>
+        <td><input class="rowOfOutput" type="text" id="val1" value="V"></td>
+        <td><input class="rowOfOutput" type="text" id="operatorInput" value="O"></td>
+        <td><input class="rowOfOutput" type="text" id="val2" value="V"></td>
+        <td><input style="background-color: none;" class="rowOfOutput" type="button" value="=" onclick="displayOutput()"></td>
+        <td><input class="rowOfOutput" type="text" id="result" value="A"></td>
+      </tr>
+
+      <tr>
+        <td><input type="button" class="abc" onclick="operatorPressed(this.value)" value="+"></td>
+        <td><input type="button" class="abc" onclick="operatorPressed(this.value)" value="-"></td>
+        <td><input type="button" class="abc" onclick="operatorPressed(this.value)" value="*"></td>
+        <td><input type="button" class="abc" onclick="operatorPressed(this.value)" value="/"></td>
+        <td><input type="button" class="abc" onclick="operatorPressed(this.value)" value="%"></td>
+      </tr>
+
+      <tr>
+        <td><input type="button" class="abc" onclick="valuePressed(this.value)" value="9"></td>
+        <td><input type="button" class="abc" onclick="valuePressed(this.value)" value="8"></td>
+        <td><input type="button" class="abc" onclick="valuePressed(this.value)" value="7"></td>
+        <td><input type="button" class="abc" onclick="valuePressed(this.value)" value="6"></td>
+        <td><input type="button" class="abc" onclick="valuePressed(this.value)" value="5"></td>
+      </tr>
+
+      <tr>
+        <td><input type="button" class="abc" onclick="valuePressed(this.value)" value="4"></td>
+        <td><input type="button" class="abc" onclick="valuePressed(this.value)" value="3"></td>
+        <td><input type="button" class="abc" onclick="valuePressed(this.value)" value="2"></td>
+        <td><input type="button" class="abc" onclick="valuePressed(this.value)" value="1"></td>
+        <td><input type="button" class="abc" onclick="valuePressed(this.value)" value="0"></td>
+      </tr>
+    </table>
+  </div>
+  <script>
+    function valuePressed(a) {
+      if (document.getElementById("operatorInput").value == "O") {
+        if (document.getElementById("val1").value == "V") {
+          document.getElementById("val1").value = "0";
+          let val = document.getElementById("val1").value;
+          val = parseInt(val) * 10 + parseInt(a);
+          document.getElementById("val1").value = val;
+        } else {
+          let val = document.getElementById("val1").value;
+          val = parseInt(val) * 10 + parseInt(a);
+          document.getElementById("val1").value = val;
+        }
+      } else {
+        if (document.getElementById("val2").value == "V") {
+          document.getElementById("val2").value = "0";
+          let val = document.getElementById("val2").value;
+          val = parseInt(val) * 10 + parseInt(a);
+          document.getElementById("val2").value = val;
+        } else {
+          let val = document.getElementById("val2").value;
+          val = parseInt(val) * 10 + parseInt(a);
+          document.getElementById("val2").value = val;
+        }
+      }
+    }
+
+    function operatorPressed(a) {
+      document.getElementById("operatorInput").value = a;
+    }
+
+    function displayOutput() {
+      let exp = `${document.getElementById("val1").value}${document.getElementById("operatorInput").value}${document.getElementById("val2").value}`;
+      document.getElementById("result").value = eval(exp)
+    }
+
+    function CLEAR() {
+      document.getElementById("val1").value = 'V';
+      document.getElementById("operatorInput").value = 'O';
+      document.getElementById("val2").value = 'V';
+      document.getElementById("result").value = 'A';
+    }
+  </script>
+</body>
+
+</html>
